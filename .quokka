@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    "./bin/quokka-plugin-alias.js"
+  ],
+  "babel": true,
+  "env": {
+    "params": {
+      "env": "VUE_CLI_BABEL_TRANSPILE_MODULES=true"
+    }
+  },
+  "alias": {
+    "@": "/src",
+    "#": "/src/components"
+  }
+}

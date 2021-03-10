@@ -2,6 +2,44 @@ import { createClient } from './client'
 
 const client = createClient()
 
+export const joinFieldTerms = fields =>
+  Object.entries(fields)
+    .map(([field, values]) => {
+      let term = ''
+      term += `${field} in (`
+      term += values.map(value => `"${value}"`).join(', ')
+      term += ')'
+      return term
+    })
+    .join(' OR ')
+
+export const search = fields => {
+  let $where = ''
+  $where += joinFieldTerms(fields)
+
+  return client
+    .request({
+      params: {
+        $where,
+      },
+    })
+    .then(resp => {
+      return resp
+    })
+}
+
+export const getInspection = id => {
+  return client
+    .request({
+      params: {
+        inspection_id: id,
+      },
+    })
+    .then(resp => {
+      return resp
+    })
+}
+
 export const getFieldOptions = field => {
   return client
     .request({

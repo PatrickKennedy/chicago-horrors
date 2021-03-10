@@ -37,6 +37,7 @@ export const normalizeAndGroupOptions = options => {
   const mapping = {}
   options.forEach(
     /** @param {String} opt */ opt => {
+      if (typeof opt !== 'string') return
       // 1008 - CHILDERN'S /SERVICE FACILITY
       const normal = opt /*?*/
         // 1008/children's /service facility

@@ -21,14 +21,14 @@ describe('api', () => {
         expect(result.error).toBeDefined()
       })
     })
-    describe('.getCombinedOptions()', () => {
+    describe('.normalizeAndGroupOptions()', () => {
       it('should return consolidated options', () => {
         const input = ['tavern', 'TAVERN/ 1006', 'TAVERN-LIQUOR', 'TAVERN/LIQUOR']
         const expected = {
           tavern: ['tavern', 'TAVERN/ 1006'],
           'tavern liquor': ['TAVERN-LIQUOR', 'TAVERN/LIQUOR'],
         }
-        const result = api.getCombinedOptions(input)
+        const result = api.utils.normalizeAndGroupOptions(input)
         expect(result).toMatchObject(expected)
       })
     })

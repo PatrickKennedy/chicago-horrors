@@ -33,7 +33,7 @@ export const getFieldOptions = field => {
  * @param {String[]} options - The options returned by the API
  * @return {Object}
  */
-export const getCombinedOptions = options => {
+export const normalizeAndGroupOptions = options => {
   const mapping = {}
   options.forEach(
     /** @param {String} opt */ opt => {
@@ -62,5 +62,5 @@ export const getCombinedOptions = options => {
 export default {
   createClient,
   getFieldOptions,
-  getCombinedOptions,
+  utils: { normalizeAndGroupOptions },
 }

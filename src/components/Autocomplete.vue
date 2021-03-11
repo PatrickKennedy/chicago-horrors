@@ -1,6 +1,6 @@
 <template lang="pug"> 
 .autocomplete-container
-  input.autocomplete-input(
+  input.form-control.autocomplete-input(
     v-model="searchInput"
     :placeholder="placeholder"
     @input="() => dirty = true"
@@ -103,15 +103,10 @@ export default {
 .autocomplete
   &-container
     position: relative
-    display: flex
-    flex: 1
 
   &-input
-    flex: 1
-    padding: 1.25em
-    border-radius: 5px
-    border: var(--color-primary) 1px solid
-    box-shadow: var(--color-primary) 0px 3px
+    padding: var(--space-md)
+    width: 100%
 
   &-list:hover,
   &-input:focus + &-list

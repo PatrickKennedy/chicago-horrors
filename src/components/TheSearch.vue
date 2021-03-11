@@ -23,7 +23,7 @@ export default {
       results: [],
     }
   },
-  async created() {
+  async mounted() {
     const result = await api.getFieldOptions('inspection_type')
     if (result.error) return // TODO: add error handling
     this.searchOptions = api.utils.normalizeAndGroupOptions(result)

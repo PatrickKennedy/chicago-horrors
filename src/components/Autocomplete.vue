@@ -6,7 +6,7 @@
     @input="() => dirty = true"
     @keydown.up="selectedIndex--"
     @keydown.down="selectedIndex++"
-    @keydown.enter="selectItem(null)"
+    @keydown.enter="handleEnter"
     @focus="$emit('selected')"
   )
   ul.autocomplete-list(v-if="showSuggestions")
@@ -80,11 +80,16 @@ export default {
     },
   },
   methods: {
+    handleEnter() {
+      if (this.dirty || this.selectedIndex >= 0) this.selectItem()
+      else this.$emit('confirm')
+    },
     selectItem(index) {
       const selected = index == undefined ? this.selectedItem : index
       this.searchInput = this.suggestionList[selected] || this.searchInput
       this.$emit('changed', this.searchOptions[this.searchInput])
       this.dirty = false
+      this.selectedIndex = -1
     },
   },
 }

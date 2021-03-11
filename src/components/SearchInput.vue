@@ -2,6 +2,7 @@
 input(
   :value=value
   @input="handleInput"
+  @keydown.enter="$emit('confirm')"
   :attrs="$attrs"
   :listeners="$listeners"
 )

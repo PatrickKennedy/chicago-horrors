@@ -21,6 +21,7 @@ export const search = fields => {
     .request({
       params: {
         $where,
+        $order: 'inspection_date DESC',
       },
     })
     .then(resp => {

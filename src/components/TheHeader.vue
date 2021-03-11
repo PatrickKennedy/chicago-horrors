@@ -1,7 +1,12 @@
 <template lang="pug">
 header.header
-  .container.max-width-lg
+  .container.flex.justify-content-between.max-width-lg
     router-link(to="/").branding Chicago Horrors
+    .acknowledgement
+      | Data provided by 
+      | 
+      a(href="https://data.cityofchicago.org/") City of Chicago
+
     
   
 </template>
@@ -26,7 +31,7 @@ export default {
 
 <style lang="sass">
 \:root
-  --header-height: 3rem
+  --header-height: 3.5rem
 </style>
 
 <style lang="sass" scoped>

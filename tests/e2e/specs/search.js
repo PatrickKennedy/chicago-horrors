@@ -10,22 +10,27 @@ describe('Search Behavior', () => {
   it('Displays options when focused', () => {
     cy.get('.autocomplete-container').as('autocomplete')
     cy.get('input')
+      .first()
       .as('searchBox')
       .click()
 
     cy.get('@autocomplete')
       .find('.autocomplete-list')
       .should('be.visible')
+      .contains('canvas')
   })
 
   it('Performs search', () => {
     cy.get('.autocomplete-container').as('autocomplete')
     cy.get('input')
+      .first()
       .as('searchBox')
       .type('canvas')
 
     cy.wait('@api')
-    cy.get('@searchBox').type('{enter}')
+    cy.get('@searchBox')
+      .type('{enter}')
+      .type('{enter}')
 
     cy.get('.search-result')
       .first()

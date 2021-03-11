@@ -5,9 +5,6 @@ describe('Search Behavior', () => {
     cy.intercept('cwig-ma7x').as('api')
     // dunno why, but Cypress wouldn't let the request from Axios in the browser through without this
     cy.visit('/')
-    cy.wait('@api').then(resp => {
-      cy.request(resp.request)
-    })
   })
 
   it('Displays options when focused', () => {
@@ -25,7 +22,10 @@ describe('Search Behavior', () => {
     cy.get('.autocomplete-container').as('autocomplete')
     cy.get('input')
       .as('searchBox')
-      .type('canvas{enter}')
+      .type('canvas')
+
+    cy.wait('@api')
+    cy.get('@searchBox').type('{enter}')
 
     cy.get('.search-result')
       .first()

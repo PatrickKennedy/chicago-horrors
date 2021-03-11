@@ -7,6 +7,7 @@
     @keydown.up="selectedIndex--"
     @keydown.down="selectedIndex++"
     @keydown.enter="selectItem(null)"
+    @focus="$emit('selected')"
   )
   ul.autocomplete-list(v-if="showSuggestions")
     template(v-if="suggestionList.length")

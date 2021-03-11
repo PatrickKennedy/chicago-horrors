@@ -1,6 +1,9 @@
 <template lang="pug">
 .container.search
-  autocomplete(:searchOptions="searchOptions" @changed="performQuery")
+  autocomplete(
+    :searchOptions="searchOptions.inspection_type"
+    @changed="performQuery"
+    @selected="loadFieldOptions('inspection_type')")
   .results
     search-result(v-for="result in results" :value="result")
 </template>
@@ -23,12 +26,17 @@ export default {
       results: [],
     }
   },
-  async mounted() {
-    const result = await api.getFieldOptions('inspection_type')
-    if (result.error) return // TODO: add error handling
-    this.searchOptions = api.utils.normalizeAndGroupOptions(result)
-  },
   methods: {
+    async loadFieldOptions(field) {
+      if (this.searchOptions[field]) return
+      const result = await api.getFieldOptions(field)
+      if (result.error) return // TODO: add error handling
+      this.$set(
+        this.searchOptions,
+        field,
+        api.utils.normalizeAndGroupOptions(result)
+      )
+    },
     async performQuery([, fields]) {
       this.results = (await search({ inspection_type: fields })).data
     },

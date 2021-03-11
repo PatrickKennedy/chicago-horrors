@@ -2,18 +2,20 @@
 card.search-result
   .grid 
     .content.col
-      .grid
+      .grid.justify-between
         .result-name.col {{ value.aka_name }}
-          span.margin-left-xxs.result-license (LICENSE \#{{ value.license_ }})
-        .result-date.col {{ value.inspection_date }}
-      .grid
+      .grid.items-center
+        .result-license.col License \#{{ value.license_ }}
         .result-type.col {{ value.inspection_type }}
         .result-results.col {{ value.results }}
-    .action.col-1.grid
+        .result-date.col {{ inspectionDate }}
+
+    .action.col-content
       router-link.breakout-link(:to="{ name: 'details', query: { id: value.inspection_id } }") >
 </template>
 
 <script>
+import moment from 'moment'
 import Card from '#/Card.vue'
 // eslint-disable-next-line no-unused-vars
 const example = {
@@ -56,8 +58,11 @@ export default {
   created() {},
   mounted() {},
   watch: {},
-  computed: {},
-  methods: {},
+  computed: {
+    inspectionDate() {
+      return moment(this.value.inspection_date).format('MM-DD-YYYY')
+    },
+  },
 }
 </script>
 
@@ -66,12 +71,20 @@ export default {
   position: relative
   margin-top: var(--space-sm)
 
-.breakout-link::before
-  content: ""
-  display: block
-  position: absolute
-  top: 0
-  left: 0
-  width: 100%
-  height: 100%
+.action
+  display: flex
+  align-items: center
+
+.breakout-link
+  text-decoration: none
+  font-size: 1.5em
+
+  &::before
+    content: ""
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
 </style>

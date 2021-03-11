@@ -5,20 +5,25 @@
       card.margin-bottom-sm
         .grid
           .name.col {{ inspectionData.aka_name }}
-            span.license.margin-left-xxs (LICENSE \#{{ inspectionData.license_ }})
-          .date.col {{ inspectionData.inspection_date }}
-        .grid
-          .type.col {{ inspectionData.inspection_type }}
-          .results.col {{ inspectionData.results }}
+          .date.col {{ inspectionDate }}
+        .grid.margin-top-xs
+          ul(class="col-12 col-6@md")
+            li.license License \#{{ inspectionData.license_ }}
+            li.facility-type Facility Type: {{ inspectionData.facility_type }}
+          ul(class="col-12 col-6@md")
+            li.results Result: {{ inspectionData.results }}
+            li.type Type: {{ inspectionData.inspection_type }}
+            li.risk Risk: {{ inspectionData.risk }}
 
       card.location
+        .address.margin-bottom-xs {{address}}
         iframe(:src="mapSrc" width="100%" height="300px")
 
     .violations(class="col-12 col-6@md")
       template(v-if="violations")
         card.violation(v-for="violation in violations") 
           .violation-code {{ violation.code }}
-          .violation-comment {{ violation.comment }}
+          .violation-comment.padding-top-sm {{ violation.comment }}
       card.violation(v-else)
         | No Violations Recorded
   card(v-else-if="errorData")
@@ -29,6 +34,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import { getInspection } from '@/api'
 import Card from '#/Card.vue'
 
@@ -61,6 +67,9 @@ export default {
         }
       })
     },
+    inspectionDate() {
+      return moment(this.inspectionData.inspection_date).format('MM-DD-YYYY')
+    },
     address() {
       return [
         this.inspectionData.address,
@@ -69,6 +78,7 @@ export default {
         this.inspectionData.zip,
       ].join(' ')
     },
+
     mapSrc() {
       const apiKey = 'AIzaSyDlNs1lUttoEK3VyOac3reod5Fp4NaUX5k'
       const q = encodeURIComponent(this.address)

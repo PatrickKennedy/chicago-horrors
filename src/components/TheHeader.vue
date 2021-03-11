@@ -1,6 +1,6 @@
 <template lang="pug">
 header.header
-  .container.flex.justify-content-between.max-width-lg
+  .container.max-width-lg
     router-link(to="/").branding Chicago Horrors
     .acknowledgement
       | Data provided by 
@@ -46,4 +46,11 @@ export default {
     display: flex
     justify-content: space-between
     align-items: center
+
+.branding
+  font-size: 1.25em
+  text-decoration: none
+
+.acknowledgement
+  font-size: .75em
 </style>

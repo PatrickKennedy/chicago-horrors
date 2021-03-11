@@ -53,7 +53,7 @@ export default {
   padding: .75em
   cursor: pointer
   background-color: var(--color-white)
-  border-bottom: 1px solid var(--color-contrast-medium)
+  border-bottom: 1px solid var(--color-primary-light)
 
   &:hover
     background-color: var(--color-contrast-lower)

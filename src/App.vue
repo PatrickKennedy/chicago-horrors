@@ -16,7 +16,6 @@ export default {
 <style lang="sass">
 html, body
   height: 100%
-  background-color: var(--color-contrast-low)
 
 #app
   font-family: Avenir, Helvetica, Arial, sans-serif
@@ -24,5 +23,4 @@ html, body
   -moz-osx-font-smoothing: grayscale
   text-align: center
   color: var(--color-contrast-high)
-  height: 100%
 </style>

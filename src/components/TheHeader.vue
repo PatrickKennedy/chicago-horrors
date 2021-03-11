@@ -39,6 +39,7 @@ export default {
   height: var(--header-height)
   width: 100%
   background-color: var(--color-white)
+  box-shadow: var(--color-primary) 1px 3px
 
   .container
     height: 100%

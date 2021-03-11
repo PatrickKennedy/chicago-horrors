@@ -1,5 +1,5 @@
 <template lang="pug"> 
-.search-result
+card.search-result
   .grid 
     .content.col
       .grid
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import Card from '#/Card.vue'
 // eslint-disable-next-line no-unused-vars
 const example = {
   inspection_id: '317219',
@@ -41,7 +42,7 @@ const example = {
 
 export default {
   name: 'search-result',
-  components: {},
+  components: { Card },
   props: {
     value: {
       type: Object,
@@ -64,8 +65,6 @@ export default {
 .search-result
   position: relative
   margin-top: var(--space-sm)
-  padding: var(--space-md)
-  background-color: var(--color-white)
 
 .breakout-link::before
   content: ""

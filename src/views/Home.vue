@@ -1,6 +1,6 @@
 <template lang="pug">
 .home.container.max-width-md
-  the-search.margin-top-xxl
+  the-search.margin-top-xl
 </template>
 
 <script>

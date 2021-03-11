@@ -94,7 +94,7 @@ export default {
 
 <style lang="sass">
 \:root
-  --autocomplete-max-height: 150px
+  --autocomplete-max-height: 75vh
   --autocomplete-z-index: 2
 </style>
 
@@ -109,7 +109,8 @@ export default {
     flex: 1
     padding: 1.25em
     border-radius: 5px
-    border: none
+    border: var(--color-primary) 1px solid
+    box-shadow: var(--color-primary) 0px 3px
 
   &-list:hover,
   &-input:focus + &-list
@@ -121,7 +122,7 @@ export default {
     top: 100%
     left: 0
     right: 0
-    border: 1px solid var(--color-contrast-medium)
+    border: 1px solid var(--color-primary-light)
     border-bottom: none
 
   &-list

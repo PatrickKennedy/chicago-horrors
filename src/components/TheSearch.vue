@@ -9,24 +9,28 @@
       @changed="selection => fuzzyTerms[field] = selection"
       @cleared="() => $delete(fuzzyTerms, field)"
       @selected="loadFieldOptions(field)"
+      @confirm="performQuery"
     )
     search-input.form-control(
       class="col-12 col-3@md"
       placeholder="Search comments"
       v-model="textTerms['violations']"
       @cleared="() => $delete(exactTerms, 'inspection_id')"
+      @confirm="performQuery"
     )
     search-input.form-control(
       class="col-12 col-3@md"
       placeholder="License #"
       v-model="exactTerms['license_']"
       @cleared="() => $delete(exactTerms, 'inspection_id')"
+      @confirm="performQuery"
     )
     search-input.form-control(
       class="col-12 col-3@md"
       placeholder="Inspection ID"
       v-model="exactTerms['inspection_id']"
       @cleared="() => $delete(exactTerms, 'inspection_id')"
+      @confirm="performQuery"
     )
     button.btn(
       class="col-12 col-3@md"

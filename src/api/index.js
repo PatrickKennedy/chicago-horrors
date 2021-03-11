@@ -2,26 +2,33 @@ import { createClient } from './client'
 
 const client = createClient()
 
-export const joinFieldTerms = fields =>
-  Object.entries(fields)
-    .map(([field, values]) => {
-      let term = ''
-      term += `${field} in (`
-      term += values.map(value => `"${value}"`).join(', ')
-      term += ')'
-      return term
-    })
-    .join(' OR ')
+export const joinFuzzyTerms = fields =>
+  Object.entries(fields).map(([field, values]) => {
+    let term = ''
+    term += `${field} in (`
+    term += values.map(value => `"${value}"`).join(', ')
+    term += ')'
+    return term
+  })
 
-export const search = fields => {
+export const joinTextTerms = fields =>
+  Object.entries(fields).map(([field, value]) => {
+    let term = ''
+    term += `${field} like '%${value}%'`
+    return term
+  })
+
+export const search = ({ fuzzy, exact, text }) => {
   let $where = ''
-  $where += joinFieldTerms(fields)
+  $where += [...joinFuzzyTerms(fuzzy), ...joinTextTerms(text)].join(' AND ')
 
   return client
     .request({
       params: {
         $where,
+        ...exact,
         $order: 'inspection_date DESC',
+        $limit: 250,
       },
     })
     .then(resp => {

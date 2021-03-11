@@ -83,10 +83,7 @@ export default {
     selectItem(index) {
       const selected = index == undefined ? this.selectedItem : index
       this.searchInput = this.suggestionList[selected] || this.searchInput
-      this.$emit('changed', [
-        this.searchInput,
-        this.searchOptions[this.searchInput],
-      ])
+      this.$emit('changed', this.searchOptions[this.searchInput])
       this.dirty = false
     },
   },

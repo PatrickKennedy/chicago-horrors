@@ -3,6 +3,7 @@
   input.autocomplete-input(
     v-model="searchInput"
     :placeholder="placeholder"
+    @input="() => dirty = true"
     @keydown.up="selectedIndex--"
     @keydown.down="selectedIndex++"
     @keydown.enter="selectItem(null)"
@@ -43,13 +44,12 @@ export default {
   data() {
     return {
       searchInput: '',
+      dirty: false,
       selectedIndex: -1,
     }
   },
   watch: {
-    searchInput(newInput, oldInput) {
-      if (newInput === oldInput) return
-      if (this.exactMatch) this.selectItem(0)
+    searchInput(newInput) {
       if (!newInput || !this.showSuggestions) this.selectedIndex = -1
     },
   },
@@ -73,11 +73,8 @@ export default {
         : options
       return suggestionList
     },
-    exactMatch() {
-      return this.normalizedInput === this.suggestionList[0]
-    },
     showSuggestions() {
-      return !this.exactMatch
+      return this.dirty || !this.searchInput
     },
   },
   methods: {
@@ -88,6 +85,7 @@ export default {
         this.searchInput,
         this.searchOptions[this.searchInput],
       ])
+      this.dirty = false
     },
   },
 }
@@ -96,6 +94,7 @@ export default {
 <style lang="sass">
 \:root
   --autocomplete-max-height: 150px
+  --autocomplete-z-index: 2
 </style>
 
 <style lang="sass" scoped>
@@ -127,4 +126,5 @@ export default {
   &-list
     max-height: var(--autocomplete-max-height)
     overflow: auto
+    z-index: var(--autocomplete-z-index)
 </style>

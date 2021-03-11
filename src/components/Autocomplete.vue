@@ -52,6 +52,7 @@ export default {
   watch: {
     searchInput(newInput) {
       if (!newInput || !this.showSuggestions) this.selectedIndex = -1
+      if (!newInput) this.$emit('cleared')
     },
   },
   computed: {

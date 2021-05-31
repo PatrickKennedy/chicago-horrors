@@ -1,18 +1,23 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+<template lang="pug">
+.home.container.max-width-md
+  the-search.margin-top-xl
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import TheSearch from '#/TheSearch.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
+    TheSearch,
   },
 }
 </script>
+
+<style lang="sass" scoped>
+.home
+  display: flex
+  flex-direction: column
+  height: 100%
+</style>

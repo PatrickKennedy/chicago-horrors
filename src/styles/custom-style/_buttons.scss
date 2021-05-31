@@ -6,19 +6,20 @@
 
 :root {
   --btn-font-size: 1em;
-  --btn-padding-x: var(--space-sm);
-  --btn-padding-y: var(--space-xxs);
+  --btn-padding-x: var(--space-md);
+  --btn-padding-y: var(--space-sm);
   --btn-radius: 0.25em;
 }
 
 .btn {
+  background: var(--color-white);
   cursor: pointer;
+  border: 1px solid var(--color-primary);
   text-decoration: none;
   line-height: 1.2;
   @include fontSmooth;
-  box-shadow: var(--shadow-xs);
+  box-shadow: 0px 3px 0px 0px var(--color-primary);
   transition: all 0.2s ease;
-  will-change: transform;
 
   &:hover {
     box-shadow: var(--shadow-sm);
@@ -27,10 +28,6 @@
   &:focus {
     box-shadow: 0px 0px 0px 2px alpha(var(--color-contrast-higher), 0.15);
     outline: none;
-  }
-
-  &:active {
-    transform: translateY(2px);
   }
 }
 

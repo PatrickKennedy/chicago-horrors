@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "allowSyntheticDefaultImports": false,
-    "baseUrl": "/",
+    // this enables stricter inference for data properties on `this`
+    "noImplicitThis": true,
+    //"traceResolution": true,
+    "baseUrl": ".",
     "paths": {
       "#/*": ["src/components/*"],
       "@/*": ["src/*"]

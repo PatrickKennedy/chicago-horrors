@@ -8,6 +8,8 @@ Spinning it up should be pretty simple. Vue CLI does an incredible job. The avai
 
 I used [CodyHouse](https://codyhouse.co/) for a design system (not utilizing the components). The colors are from [Colormind.io](http://colormind.io/) though I've used them before on my [CodePen](https://codepen.io/PatrickKennedy), check it out!
 
+Live Demo: https://chicago-horrors.netlify.app/
+
 ## Todo
 
 No project is complete with something left todo. These are a non-exhaustive list of things I would improve
